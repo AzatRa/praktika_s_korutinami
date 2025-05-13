@@ -30,17 +30,20 @@ public class HealthView : MonoBehaviour
     private void OnEnable()
     {
         _health.Changed += TakeDamage;
+        Debug.Log("TakeDamage OnEnable.");
     }
 
     private void OnDisable()
     {
         _health.Changed -= TakeDamage;
+        Debug.Log("TakeDamage OnDisable.");
     }
 
     private void TakeDamage(float currentHealth)
     {
         _heartAnimator.Play(_healthPulseAnimation.name);
         _coroutine = StartCoroutine(DecreaseHealthSmoothly(currentHealth));
+        Debug.Log("TakeDamage in HealthView.");
     }
 
     private IEnumerator DecreaseHealthSmoothly(float target)
